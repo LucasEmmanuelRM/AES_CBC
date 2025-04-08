@@ -14,7 +14,8 @@ Uma implementação em C do AES (Advanced Encryption Standard) no modo CBC (Ciph
 - O comprimento mínimo da chave é de 16 caracteres;
 - O vetor de inicialização é gerado aleatoriamente durante a cifração e é salvo no início da saída. A decifração resgata esse vetor buscando-o no início do arquivo cifrado;
 - O formato de ambos arquivos de entrada e saída são definidos pelo usuário. Logo, se ele desejar decifrar e não conhecer a extensão original do arquivo, provavelmente encontrará problemas;
-- Foi implementado padding **PKCS#7** para garantir alinhamento de blocos, permitindo o uso do CBC eficientemente.
+- Foi implementado padding **PKCS#7** para garantir alinhamento de blocos, permitindo o uso do CBC eficientemente;
+- IMPORTANTE: O TAMANHO MÁXIMO SUPORTADO DO ARQUIVO DE ENTRADA É, POR PADRÃO, 64 MB. Isso pode ser modificado na main, linha 8.
 
 **Esquema Visual de uma Cifração:**
 
