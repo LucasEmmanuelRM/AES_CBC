@@ -19,11 +19,19 @@ Uma implementação em C do AES (Advanced Encryption Standard) no modo CBC (Ciph
 **Esquema Visual:**
 
 Entrada (ex: 52 bytes)
+
  ↓   [PKCS#7]
+ 
 Pad até múltiplo de 16 bytes (agora 64 bytes)
+
  ↓   [AES CBC Encrypt]
+ 
 Divide em blocos, aplicando XOR + AES neles
+
  ↓
+ 
 Concatena blocos cifrados
+
  ↓
+ 
 Grava em disco (com vetor inicializador no início)
