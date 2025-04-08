@@ -1,15 +1,29 @@
-Uma implementação em C do AES no modo CBC, permitindo a cifração e decifração de qualquer arquivo de entrada desejado, não necessarimaente se limitando a arquivos txt.
+Uma implementação em C do AES (Advanced Encryption Standard) no modo CBC (Cipher Block Chaining), permitindo a cifração e decifração de qualquer arquivo de entrada desejado, não necessarimaente se limitando a arquivos txt.
 
 **Compilação:**
-    gcc -o aes main.c aes.c
+    gcc -o aes_cb main.c aes_cbc.c
 
 **Uso:**
-    ./aes <cifrar|decifrar> <arquivo_entrada> <arquivo_saida> <chave_em_hex>
+    ./aes_cbc <cifrar|decifrar> <arquivo_entrada> <arquivo_saida> <chave> <tamanho_chave_bits>
 
 **Exemplo:**
-    ./aes cifrar textoclaro.txt textocifrado.txt 00112233445566778899aabbccddeeff
+    ./aes_cbc cifrar arquivoclaro.pdf arquivocifrado.pdf SbubblesSbubbles 128
 
 **Observações:**
-- A chave deve ser 128, 192 ou 256 bits (32, 48 ou 64 caracteres).
-- O vetor de inicialização é fixo, porém pode ser modificado manualmente no main.c, linha 60.
-- O formato de ambos arquivos de entrada e saída são definidos pelo usuário. Logo, se ele desejar decifrar e não conhecer a extensão original do arquivo, provavelmente encontrará problemas.
+- A chave deve ser 128, 192 ou 256 bits (32, 48 ou 64 caracteres). Com um comprimento maior, bytes em excesso são ignorados;
+- O comprimento mínimo da chave é de 16 caracteres;
+- O vetor de inicialização é gerado aleatoriamente durante a cifração e é salvo no início da saída. A decifração resgata esse vetor buscando-o no início do arquivo cifrado;
+- O formato de ambos arquivos de entrada e saída são definidos pelo usuário. Logo, se ele desejar decifrar e não conhecer a extensão original do arquivo, provavelmente encontrará problemas;
+- Foi implementado padding **PKCS#7** para garantir alinhamento de blocos, permitindo o uso do CBC eficientemente.
+
+**Esquema Visual:**
+
+Entrada (ex: 52 bytes)
+ ↓   [PKCS#7]
+Pad até múltiplo de 16 bytes (agora 64 bytes)
+ ↓   [AES CBC Encrypt]
+Divide em blocos, aplicando XOR + AES neles
+ ↓
+Concatena blocos cifrados
+ ↓
+Grava em disco (com vetor inicializador no início)
