@@ -16,22 +16,22 @@ Uma implementação em C do AES (Advanced Encryption Standard) no modo CBC (Ciph
 - O formato de ambos arquivos de entrada e saída são definidos pelo usuário. Logo, se ele desejar decifrar e não conhecer a extensão original do arquivo, provavelmente encontrará problemas;
 - Foi implementado padding **PKCS#7** para garantir alinhamento de blocos, permitindo o uso do CBC eficientemente.
 
-**Esquema Visual:**
+**Esquema Visual de uma Cifração:**
 
 【Entrada (ex: 52 bytes)】
 
- ↓   [PKCS#7]
+          ↓   PKCS#7
  
 【Pad até múltiplo de 16 bytes (agora 64 bytes)】
 
- ↓   [AES CBC Encrypt]
+          ↓   AES CBC Encrypt
  
 【Divide em blocos, aplicando XOR + AES neles】
 
- ↓
+          ↓
  
 【Concatena blocos cifrados】
 
-  ↓
+          ↓
  
 【Grava em disco (com vetor inicializador no início)】
