@@ -4,7 +4,7 @@ Uma implementação em C do AES (Advanced Encryption Standard) no modo CBC (Ciph
     gcc -o aes_cb main.c aes_cbc.c
 
 **Uso:**
-    ./aes_cbc <cifrar|decifrar> <arquivo_entrada> <arquivo_saida> <chave> <tamanho_chave_bits>
+    ./aes_cbc <cifrar|decifrar> <arquivo_entrada> <arquivo_saida> <chave_secreta> <tamanho_chave_bits>
 
 **Exemplo:**
     ./aes_cbc cifrar arquivoclaro.pdf arquivocifrado.pdf SbubblesSbubbles 128
