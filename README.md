@@ -1,7 +1,7 @@
 Uma implementação em C do AES (Advanced Encryption Standard) no modo CBC (Cipher Block Chaining), permitindo a cifração e decifração de qualquer arquivo de entrada desejado, não necessarimaente se limitando a arquivos txt.
 
 **Compilação:**
-    gcc -o aes_cb main.c aes_cbc.c
+    gcc -o aes_cbc main.c aes_cbc.c
 
 **Uso:**
     ./aes_cbc <cifrar|decifrar> <arquivo_entrada> <arquivo_saida> <chave_secreta> <tamanho_chave_bits>
